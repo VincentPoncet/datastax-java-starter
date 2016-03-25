@@ -31,6 +31,7 @@ To remove the tables and the schema, run the following.
 
 Use /resources/cql/test_data.cql to populate some tables.
 then play
+
 http://localhost:8080/datastax-starter/rest/getAllOrdersByCustomer/a4a70900-24e1-11df-8924-001ff3591711
 
 http://localhost:8080/datastax-starter/rest/getTop50SellingProducts
