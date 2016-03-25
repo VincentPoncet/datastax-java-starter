@@ -1,9 +1,9 @@
-DataStax Java Starter
+PackaThon Retail
 ========================
 
 To get started download this repository. Choose a location to download the project and run the following
 ```
-git clone https://github.com/DataStaxCodeSamples/datastax-java-starter
+git clone https://github.com/VincentPoncet/datastax-java-starter
 cd datastax-java-starter
 rm -rf .git
 ```
