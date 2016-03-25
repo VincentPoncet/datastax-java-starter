@@ -1,10 +1,10 @@
-package com.datastax.sample;
+package com.datastax.retail;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.datastax.demo.utils.Timer;
-import com.datastax.sample.service.Service;
+import com.datastax.retail.service.Service;
 
 public class Main {
 
@@ -20,7 +20,7 @@ public class Main {
 		Timer timer = new Timer();
 		
 		//Do something here.
-		logger.info(service.getKeyspaces().toString());
+		//logger.info(service.getKeyspaces().toString());
 		
 		timer.end();
 		logger.info("Test took " +timer.getTimeTakenSeconds() + " secs.");

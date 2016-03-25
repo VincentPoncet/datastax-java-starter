@@ -13,10 +13,6 @@ To create the schema, run the following
 
 	mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.SchemaSetup" -DcontactPoints=localhost
 	
-To start the Main program, run the following 
-	
-	mvn clean compile exec:java -Dexec.mainClass="com.datastax.sample.Main"  -DcontactPoints=localhost
-	
 This will print out a description of all the keyspaces in the cluster using a the sample service. 
 	
 To start the web server run 
@@ -32,5 +28,16 @@ This will return a json representation of the keyspaces in the cluster using a t
 To remove the tables and the schema, run the following.
 
     mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.SchemaTeardown"
+
+
+    Use /resources/cql/test_data.cql to populate some tables.
+    then
+http://localhost:8080/datastax-starter/rest/getAllOrdersByCustomer/a4a70900-24e1-11df-8924-001ff3591711
+
+http://localhost:8080/datastax-starter/rest/getTop50SellingProducts
+
+
+
+
     
     

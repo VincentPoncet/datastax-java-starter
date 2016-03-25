@@ -10,14 +10,15 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.datastax.cassandra:cassandra-driver-core:2.1.9" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.0.27.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.0.27.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-common:4.0.27.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.0.27.Final" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.0.27.Final" level="project" />
-    <orderEntry type="library" name="Maven: com.google.guava:guava:14.0.1" level="project" />
-    <orderEntry type="library" name="Maven: com.codahale.metrics:metrics-core:3.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.datastax.cassandra:cassandra-driver-core:3.0.0" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.0.33.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.0.33.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-common:4.0.33.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.0.33.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.0.33.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:16.0.1" level="project" />
+    <orderEntry type="library" name="Maven: io.dropwizard.metrics:metrics-core:3.1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.datastax.cassandra:cassandra-driver-mapping:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.0.9" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.2" level="project" />
