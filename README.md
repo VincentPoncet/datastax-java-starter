@@ -29,12 +29,14 @@ To remove the tables and the schema, run the following.
 
     mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.SchemaTeardown"
 
-
-    Use /resources/cql/test_data.cql to populate some tables.
-    then
+Use /resources/cql/test_data.cql to populate some tables.
+then play
 http://localhost:8080/datastax-starter/rest/getAllOrdersByCustomer/a4a70900-24e1-11df-8924-001ff3591711
 
 http://localhost:8080/datastax-starter/rest/getTop50SellingProducts
+
+warning : com.datastax.retail.service has IP in the code, change it to localhost.
+
 
 
 
