@@ -28,7 +28,7 @@ public class Order {
     @Column(name = "timestamp")
     private LocalDate timestamp;
 
-    @Column(name = "order_lines")
+    @Column(name = "order_lines_")
     private List<OrderLine> orderLines;
 
     @Column(name = "total_price")
