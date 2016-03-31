@@ -40,8 +40,8 @@ public class SellingProduct implements Comparable<SellingProduct> {
 	}
 
     public  SellingProduct( UUID productId, double saleCount ){
-        productId = productId;
-        saleCount = saleCount;
+        this.productId = productId;
+        this.saleCount = saleCount;
     }
 
 	@Override
@@ -57,5 +57,8 @@ public class SellingProduct implements Comparable<SellingProduct> {
             return 1;
         }
     }
+
+
+
 
 }
