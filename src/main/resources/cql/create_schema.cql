@@ -4,6 +4,7 @@ use retail_ks;
 
 create type if not exists order_line (
     product_id uuid,
+    product_name text,
     quantity double,
     unit_price double,
     total_price double
@@ -20,8 +21,8 @@ create table if not exists orders (
     WITH CLUSTERING ORDER BY (order_id DESC);
 
 create table if not exists top50_selling_products (
-    product_id text,
-    sale_count int,
+    product_id uuid,
+    sale_count double,
     PRIMARY KEY ((product_id, sale_count))
     );
 

@@ -5,39 +5,44 @@ import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
 import com.datastax.driver.mapping.annotations.Table;
 
+import java.util.UUID;
+
 @Table(keyspace = "retail_ks", name = "top50_selling_products")
 public class SellingProduct implements Comparable<SellingProduct> {
 
 	@PartitionKey(0)
 	@Column(name = "product_id")
-	private String productId;
+	private UUID productId;
 
 	@PartitionKey(1)
 	@Column(name = "sale_count")
-	private int saleCount;
+	private double saleCount;
 
 
 	public SellingProduct() {
 		super();
 	}
 
-	public String getProductId() {
+	public UUID getProductId() {
 		return productId;
 	}
 
-	public void setProductId(String productId) {
+	public void setProductId(UUID productId) {
 		this.productId = productId;
 	}
 
-	public int getSaleCount() {
+	public double getSaleCount() {
 		return saleCount;
 	}
 
-	public void setSaleCount(int saleCount) {
+	public void setSaleCount(double saleCount) {
 		this.saleCount = saleCount;
 	}
 
-
+    public  SellingProduct( UUID productId, double saleCount ){
+        productId = productId;
+        saleCount = saleCount;
+    }
 
 	@Override
 	public String toString() {
