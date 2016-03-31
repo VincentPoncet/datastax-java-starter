@@ -41,11 +41,24 @@ public class RetailWS {
 	@GET
 	@Path("/getAllOrdersByCustomer/{customerId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getOrder(@PathParam("customerId") java.util.UUID customerId) {
+	public Response getAllOrdersByCustomer(@PathParam("customerId") java.util.UUID customerId) {
 
 		List<Order> result = service.getAllOrdersByCustomer(customerId);
 
 		return Response.status(Status.OK).entity(result).build();
 	}
+
+
+    @GET
+    @Path("/getMostSoldProductsByCustomer/{customerId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getMostSoldProductsByCustomer(@PathParam("customerId") java.util.UUID customerId) {
+
+        List<SellingProduct> result = service.getMostSoldProductsByCustomer(customerId);
+
+        return Response.status(Status.OK).entity(result).build();
+    }
+
+
 	
 }

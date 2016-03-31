@@ -1,13 +1,17 @@
 package com.datastax.retail.service;
 
 import java.util.Collections;
+import java.util.stream.Collectors;
 import java.util.List;
 
 import com.datastax.demo.utils.PropertyHelper;
 import com.datastax.driver.core.KeyspaceMetadata;
 import com.datastax.retail.dao.RetailDao;
 import com.datastax.retail.model.Order;
+import com.datastax.retail.model.OrderLine;
 import com.datastax.retail.model.SellingProduct;
+
+
 
 public class Service {
 
@@ -27,5 +31,17 @@ public class Service {
 
 	}
 
-	public List<Order> getAllOrdersByCustomer(java.util.UUID customerId) { return dao.getAllOrdersByCustomer(customerId); }
+	public List<Order> getAllOrdersByCustomer(java.util.UUID customerId) {
+        return dao.getAllOrdersByCustomer(customerId);
+    }
+
+    public List<SellingProduct> getMostSoldProductsByCustomer(java.util.UUID customerId) {
+        List<Order> orders = dao.getAllOrdersByCustomer(customerId);
+        List<SellingProduct> lsp = orders.stream()
+                .flatMap(o ->  o.getOrderLines().stream())
+                .map( ol -> new SellingProduct(ol.getProductId(), ol.getQuantity()))
+                .collect(Collectors.toList());
+        return lsp;
+    }
+
 }
