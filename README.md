@@ -32,9 +32,11 @@ To see all orders of one customer
 	http://localhost:8080/datastax-starter/rest/getAllOrdersByCustomer/a4a70900-24e1-11df-8924-001ff3591711
 
 To see most sold products of one customer
+
     http://localhost:8080/datastax-starter/rest/getMostSoldProductsByCustomer/a4a70900-24e1-11df-8924-001ff3591711
 
 To see Top50 Selling Products
+
     http://localhost:8080/datastax-starter/rest/getTop50SellingProducts
 
 
