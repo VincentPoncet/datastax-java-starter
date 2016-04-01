@@ -27,13 +27,6 @@ create table if not exists top50_selling_products (
     );
 
 
-create table if not exists top_selling_products_by_customer (
-    customer_id uuid,
-    product_id int,
-    sale_count int,
-    PRIMARY KEY (customer_id, sale_count)
-    )
-    WITH CLUSTERING ORDER BY (sale_count DESC);
 
 
 
