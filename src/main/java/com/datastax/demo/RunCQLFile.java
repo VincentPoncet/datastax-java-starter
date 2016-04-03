@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.datastax.demo.utils.FileUtils;
+import com.datastax.demo.utils.PropertyHelper;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.exceptions.InvalidQueryException;
@@ -15,18 +16,15 @@ public abstract class RunCQLFile {
 	static String DROP_KEYSPACE;
 
 	private Cluster cluster;
-	private Session session;
+	private static Session session;
 	private String CQL_FILE;
 
 	RunCQLFile(String cqlFile) {
 		
 		logger.info("Running file " + cqlFile);
 		this.CQL_FILE = cqlFile;
-		
-		String contactPointsStr = System.getProperty("contactPoints");
-		if (contactPointsStr == null) {
-			contactPointsStr = "127.0.0.1";
-		}
+	
+		String contactPointsStr = PropertyHelper.getProperty("contactPoints","127.0.0.1");
 
 		cluster = Cluster.builder().addContactPoints(contactPointsStr.split(",")).build();
 		session = cluster.connect();
@@ -34,6 +32,10 @@ public abstract class RunCQLFile {
 	
 	void internalSetup() {
 		this.runfile();		
+	}
+	
+	protected static Session getSession(){
+		return session;
 	}
 	
 	void runfile() {
