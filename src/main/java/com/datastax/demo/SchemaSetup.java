@@ -1,5 +1,7 @@
 package com.datastax.demo;
 
+import com.datastax.demo.utils.PropertyHelper;
+
 public class SchemaSetup extends RunCQLFile {
 
 	SchemaSetup(String cqlFile) {
@@ -8,7 +10,8 @@ public class SchemaSetup extends RunCQLFile {
 
 	public static void main(String args[]){
 		
-		SchemaSetup setup = new SchemaSetup("cql/create_schema.cql");
+		String schemSetDDLPath = PropertyHelper.getProperty("schemSetDDLPath","cql/create_schema.cql");
+		SchemaSetup setup = new SchemaSetup(schemSetDDLPath);
 		setup.internalSetup();
 		setup.shutdown();
 	}

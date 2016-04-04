@@ -1,5 +1,7 @@
 package com.datastax.demo;
 
+import com.datastax.demo.utils.PropertyHelper;
+
 // This is a data generator for Packathon.
 // This program accepts a json file generated from the BestBuy API.
 // http://bestbuyapis.github.io/bby-query-builder/#/productSearch
@@ -168,7 +170,11 @@ public class DataGenerator extends RunCQLFile {
 	
     public static void main(String[] args) {
 
-    	DataGenerator client = new DataGenerator("cql/create_cassandra_ddl.cql");
+    	String datGenCreatDDLPath = PropertyHelper.getProperty("datGenCreatDDLPath","cql/create_cassandra_ddl.cql");
+    	DataGenerator client = new DataGenerator(datGenCreatDDLPath);
+    	//DataGenerator client = new DataGenerator("cql/create_cassandra_ddl.cql");
+    	
+    	
 		client.internalSetup();
 		
 		
@@ -179,15 +185,16 @@ public class DataGenerator extends RunCQLFile {
         }
 
         // Location of the json file to load
-        String fileName = "src/main/resources/products.json";
+        //String fileName = "src/main/resources/products.json";
+        String datGenDataPath = PropertyHelper.getProperty("datGenDataPath","src/main/resources/product.json");
         if (args.length > 2) {
-            fileName = args[2];
+        	datGenDataPath = args[2];
         }
 
         int numberOfProducts = 0;
 
         
-        numberOfProducts = client.loadJson(fileName);
+        numberOfProducts = client.loadJson(datGenDataPath);
         
       
         //System.out.println("Products loaded = " + numberOfProducts);
