@@ -4,6 +4,8 @@ create keyspace if not exists retail_ks WITH replication = {'class': 'SimpleStra
 
 use retail_ks;
 
+/* cassandra-stress user profile=prodCatStress.yaml n=100000 ops\(insert=1\) */
+
 create table if not exists product_catalog (
 	color text,
     description text,
@@ -40,8 +42,9 @@ create table if not exists orders (
 create table if not exists top50_selling_products (
 	sku ascii,
 	sale_count int,
-	PRIMARY KEY ((sku, sale_count))
-);
+	test int,
+	PRIMARY KEY (sku,sale_count)
+)WITH CLUSTERING ORDER BY (sale_count ASC);
 
 
                 

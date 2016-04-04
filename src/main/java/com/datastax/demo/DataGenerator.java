@@ -27,12 +27,14 @@ import org.json.simple.parser.JSONParser;
 import java.io.FileReader;
 import java.util.*;
 
-public class DataGenerator extends RunCQLFile {
+public class DataGenerator {
 
-	public Integer loadJson(String fileName) {
-    
-		Session session = getSession();
-		
+	private static Cluster cluster;
+	private static Session session;
+
+	
+	private static Integer loadJson(String fileName) {
+    		
         JSONParser parser = new JSONParser();
         int rowCounter = 0; // Track number of products
 
@@ -77,10 +79,9 @@ public class DataGenerator extends RunCQLFile {
     }
 
 
-    public void placeOrders() {
+    public static void placeOrders() {
 
-    	Session session = getSession();
-        ResultSet results = session.execute("SELECT sku, name, regular_price FROM retail_ks.product_catalog;");
+    	ResultSet results = session.execute("SELECT sku, name, regular_price FROM retail_ks.product_catalog;");
         int numberOfProducts = results.getAvailableWithoutFetching();
         String[][] productList = new String[numberOfProducts][3];
         // Build product array
@@ -145,7 +146,7 @@ public class DataGenerator extends RunCQLFile {
                     + "customer_id,"
                     + "order_id,"
                     + "date,"
-                    + "order_lines"
+                    + "order_lines_"
                     + ")"
                     + "values("
                     + customer_id + ","
@@ -162,21 +163,15 @@ public class DataGenerator extends RunCQLFile {
         }
     }
 
-    
-    DataGenerator (String cqlFile) {
-		super(cqlFile);
-	}
-
 	
     public static void main(String[] args) {
 
-    	// Setup schema if not exists
-        // merge into the global create table, we do not need anymore
-    	String datGenCreatDDLPath = PropertyHelper.getProperty("datGenCreatDDLPath","cql/create_cassandra_ddl.cql");
-    	DataGenerator client = new DataGenerator(datGenCreatDDLPath);
-		client.internalSetup();
+    	// init cluster/session
+		String contactPointsStr = PropertyHelper.getProperty("contactPoints","127.0.0.1");
+    	cluster = Cluster.builder().addContactPoints(contactPointsStr.split(",")).build();
+		session = cluster.connect();
 		
-		
+    	
         // How many milliseconds to sleep in between orders
         int sleepTime = 10;
         if (args.length > 1) {
@@ -184,7 +179,6 @@ public class DataGenerator extends RunCQLFile {
         }
 
         // Location of the json file to load
-        //String fileName = "src/main/resources/products.json";
         String datGenDataPath = PropertyHelper.getProperty("datGenDataPath","src/main/resources/product.json");
         if (args.length > 2) {
         	datGenDataPath = args[2];
@@ -193,12 +187,14 @@ public class DataGenerator extends RunCQLFile {
         int numberOfProducts = 0;
 
         
-        numberOfProducts = client.loadJson(datGenDataPath);
+        numberOfProducts = loadJson(datGenDataPath);
         
       
         //System.out.println("Products loaded = " + numberOfProducts);
-        client.placeOrders();        
-        client.shutdown();
+        placeOrders();        
+        
+        session.close();
+		cluster.close();
 
     }
 }

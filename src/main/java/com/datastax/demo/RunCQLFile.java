@@ -9,7 +9,7 @@ import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.exceptions.InvalidQueryException;
 
-public abstract class RunCQLFile {
+public class RunCQLFile {
 
 	private static Logger logger = LoggerFactory.getLogger(RunCQLFile.class);
 	static String CREATE_KEYSPACE;
@@ -34,7 +34,7 @@ public abstract class RunCQLFile {
 		this.runfile();		
 	}
 	
-	protected static Session getSession(){
+	protected Session getSession(){
 		return session;
 	}
 	
