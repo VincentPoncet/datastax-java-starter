@@ -40,11 +40,11 @@ public class Service {
 
         Map<UUID, Double> totalSellByProductMap = orders.stream()
                 .flatMap(o ->  o.getOrderLines().stream())
-                .map( ol -> new SellingProduct(ol.getProductId(), ol.getQuantity()) )
+                .map( ol -> new SellingProduct(ol.getProductId(), ol.getQuantity(), ol.getTotalPrice()) )
                 .collect(Collectors.groupingBy(SellingProduct::getProductId, Collectors.summingDouble(o2 -> o2.getSaleCount())));
 
         List<SellingProduct> totalSellByProductList = new ArrayList<SellingProduct>();
-        totalSellByProductMap.forEach( (k,v) -> totalSellByProductList.add( new SellingProduct(k,v)  ) );
+        totalSellByProductMap.forEach( (k,v) -> totalSellByProductList.add( new SellingProduct(k,v) ) );
 
         Collections.sort(totalSellByProductList, Collections.reverseOrder());
 

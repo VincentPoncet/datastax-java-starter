@@ -10,13 +10,15 @@ import java.util.UUID;
 @Table(keyspace = "retail_ks", name = "top50_selling_products")
 public class SellingProduct implements Comparable<SellingProduct> {
 
-	@PartitionKey(0)
+	@PartitionKey
 	@Column(name = "product_id")
 	private UUID productId;
 
-	@PartitionKey(1)
 	@Column(name = "sale_count")
 	private double saleCount;
+
+    @Column(name = "sale_count")
+    private double saleValue;
 
 
 	public SellingProduct() {
@@ -24,29 +26,42 @@ public class SellingProduct implements Comparable<SellingProduct> {
 	}
 
 	public UUID getProductId() {
-		return productId;
+
+        return productId;
 	}
 
 	public void setProductId(UUID productId) {
-		this.productId = productId;
+
+        this.productId = productId;
 	}
 
 	public double getSaleCount() {
-		return saleCount;
+
+        return saleCount;
 	}
 
 	public void setSaleCount(double saleCount) {
-		this.saleCount = saleCount;
+
+        this.saleCount = saleCount;
 	}
 
-    public  SellingProduct( UUID productId, double saleCount ){
+    public double getSaleValue() {
+        return saleValue;
+    }
+
+    public void setSaleValue(double saleValue) {
+        this.saleValue = saleValue;
+    }
+
+    public  SellingProduct( UUID productId, double saleCount, double saleValue ){
         this.productId = productId;
         this.saleCount = saleCount;
+        this.saleValue = saleValue;
     }
 
 	@Override
 	public String toString() {
-		return "SellingProduct [productId=" + productId + ", saleCount=" + saleCount + "]";
+		return "SellingProduct [productId=" + productId + ", saleCount=" + saleCount + ", saleValue=" + saleValue+ "]";
 	}
 
     @Override

@@ -23,7 +23,8 @@ create table if not exists orders (
 create table if not exists top50_selling_products (
     product_id uuid,
     sale_count double,
-    PRIMARY KEY ((product_id, sale_count))
+    sale_value double,
+    PRIMARY KEY (product_id)
     );
 
 
