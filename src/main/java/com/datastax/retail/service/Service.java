@@ -18,7 +18,7 @@ public class Service {
 	private RetailDao dao;
 
 	public Service() {		
-		String contactPointsStr = PropertyHelper.getProperty("contactPoints", "172.16.123.1");
+		String contactPointsStr = PropertyHelper.getProperty("contactPoints", "127.0.0.1");
 		this.dao = new RetailDao(contactPointsStr.split(","));
 	}	
 

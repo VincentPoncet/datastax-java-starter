@@ -9,6 +9,8 @@ rm -rf .git
 ```
 Note : We run the remove so that any git files are deleted.
 
+
+
 To create the schema, run the following
 
 	mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.SchemaSetup" -DcontactPoints=localhost
@@ -16,6 +18,14 @@ To create the schema, run the following
 To populate the schema with test data, run the following
 
 	mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.SchemaPopulate" -DcontactPoints=localhost
+	
+	
+To load data with the DataGenerator
+	
+	mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.DataGenerator"
+	
+	Make sure you have the path in myProperties.txt file eg src/main/resources/product.json.
+	Location of the file can be changed in src/main/resources/myProperties.txt
 
 	
 To start the web server run 
@@ -41,6 +51,8 @@ To see Top50 Selling Products
 
 
 warning : com.datastax.retail.service has IP in the code, change it to localhost.
+
+DSE contactpoints can be added at src/main/resources/myProperties.txt
 
 
 

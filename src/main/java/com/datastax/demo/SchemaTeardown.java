@@ -1,5 +1,7 @@
 package com.datastax.demo;
 
+import com.datastax.demo.utils.PropertyHelper;
+
 public class SchemaTeardown extends RunCQLFile {
 
 	SchemaTeardown(String cqlFile) {
@@ -8,7 +10,8 @@ public class SchemaTeardown extends RunCQLFile {
 
 	public static void main(String args[]){
 		
-		SchemaTeardown setup = new SchemaTeardown("cql/drop_schema.cql");
+		String schemTrDwnPath = PropertyHelper.getProperty("schemTrDwnPath","cql/drop_schema.cql");
+		SchemaTeardown setup = new SchemaTeardown(schemTrDwnPath);
 		setup.internalSetup();
 		setup.shutdown();
 	}
