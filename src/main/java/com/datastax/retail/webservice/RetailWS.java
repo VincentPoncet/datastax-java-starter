@@ -1,7 +1,10 @@
 package com.datastax.retail.webservice;
 
-import java.text.SimpleDateFormat;
-import java.util.List;
+import com.datastax.retail.model.Order;
+import com.datastax.retail.model.SellingProduct;
+import com.datastax.retail.service.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.jws.WebService;
 import javax.ws.rs.GET;
@@ -11,13 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import com.datastax.retail.model.Order;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.datastax.retail.model.SellingProduct;
-import com.datastax.retail.service.Service;
+import java.util.List;
 
 @WebService
 @Path("/")
@@ -29,14 +26,24 @@ public class RetailWS {
 	private Service service = new Service();
 	
 	@GET
-	@Path("/getTop50SellingProducts")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getTop50SellingProducts() {
-				
-		List<SellingProduct> result = service.getTop50SellingProducts();
-		
-		return Response.status(Status.OK).entity(result).build();
-	}
+    @Path("/getTop50CountSellingProducts")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTop50CountSellingProducts() {
+
+        List<SellingProduct> result = service.getTop50CountSellingProducts();
+
+        return Response.status(Status.OK).entity(result).build();
+    }
+
+    @GET
+    @Path("/getTop50ValueSellingProducts")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTop50ValueSellingProducts() {
+
+        List<SellingProduct> result = service.getTop50ValueSellingProducts();
+
+        return Response.status(Status.OK).entity(result).build();
+    }
 
 	@GET
 	@Path("/getAllOrdersByCustomer/{customerId}")
@@ -50,11 +57,21 @@ public class RetailWS {
 
 
     @GET
-    @Path("/getMostSoldProductsByCustomer/{customerId}")
+    @Path("/getMostSoldProductsCountByCustomer/{customerId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getMostSoldProductsByCustomer(@PathParam("customerId") java.util.UUID customerId) {
+    public Response getMostSoldProductsCountByCustomer(@PathParam("customerId") java.util.UUID customerId) {
 
-        List<SellingProduct> result = service.getMostSoldProductsByCustomer(customerId);
+        List<SellingProduct> result = service.getMostSoldProductsCountByCustomer(customerId);
+
+        return Response.status(Status.OK).entity(result).build();
+    }
+
+    @GET
+    @Path("/getMostSoldProductsValueByCustomer/{customerId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getMostSoldProductsValueByCustomer(@PathParam("customerId") java.util.UUID customerId) {
+
+        List<SellingProduct> result = service.getMostSoldProductsValueByCustomer(customerId);
 
         return Response.status(Status.OK).entity(result).build();
     }
