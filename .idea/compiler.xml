@@ -24,6 +24,13 @@
         <processorPath useClasspath="true" />
         <module name="datastax-starter" />
       </profile>
+      <profile default="false" name="Annotation profile for datastax-starter-retail" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="datastax-starter-retail" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="datastax-starter" target="1.8" />
