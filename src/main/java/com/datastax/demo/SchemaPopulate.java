@@ -10,9 +10,7 @@ public class SchemaPopulate extends RunCQLFile {
 
 	public static void main(String args[]){
 		String schemPopDataPath = PropertyHelper.getProperty("schemPopDataPath","cql/test_data.cql");
-		SchemaPopulate setup = new SchemaPopulate(schemPopDataPath);
-		
-	    
+		SchemaPopulate setup = new SchemaPopulate(schemPopDataPath);	    
 		setup.internalSetup();
 		setup.shutdown();
 	}

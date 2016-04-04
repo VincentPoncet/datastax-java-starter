@@ -10,7 +10,6 @@ public class SchemaSetup extends RunCQLFile {
 
 	public static void main(String args[]){
 		
-		//String schemSetDDLPath = PropertyHelper.getProperty("schemSetDDLPath","cql/create_schema.cql");
 		String schemSetDDLPath = PropertyHelper.getProperty("schemSetDDLPath","cql/create_schema.cql");
 		SchemaSetup setup = new SchemaSetup(schemSetDDLPath);
 		setup.internalSetup();

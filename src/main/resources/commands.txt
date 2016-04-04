@@ -1,1 +1,5 @@
 //Any Commands that need to be run - like dsetool or cql can be put here.
+
+
+// create csv file out of orders table for the JMeter test
+cqlsh 10.10.11.10 -e "SELECT customer_id FROM retail_ks.orders" > rest_jmeter_cust_ids.txt
