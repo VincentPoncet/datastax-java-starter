@@ -18,8 +18,8 @@ import java.util.UUID;
 @UDT(name = "order_line", keyspace = "retail_ks")
 public class OrderLine {
 
-    @Field(name = "product_id")
-    private java.util.UUID productId;
+    @Field(name = "sku")
+    private String sku;
 
     @Field(name = "quantity")
     private Double quantity;
@@ -30,12 +30,12 @@ public class OrderLine {
     @Field(name = "total_price")
     private Double totalPrice;
 
-    public UUID getProductId() {
-        return productId;
+    public String getSku() {
+        return sku;
     }
 
-    public void setProductId(UUID productId) {
-        this.productId = productId;
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
     public Double getQuantity() {

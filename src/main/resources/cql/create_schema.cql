@@ -2,8 +2,9 @@ create keyspace if not exists retail_ks WITH replication = {'class': 'SimpleStra
 
 use retail_ks;
 
+
 create type if not exists order_line (
-    product_id uuid,
+    sku text,
     product_name text,
     quantity double,
     unit_price double,
@@ -20,12 +21,33 @@ create table if not exists orders (
     )
     WITH CLUSTERING ORDER BY (order_id DESC);
 
+
 create table if not exists top50_selling_products (
-    product_id uuid,
+    sku text,
     sale_count double,
     sale_value double,
-    PRIMARY KEY (product_id)
+    PRIMARY KEY (sku)
     );
+
+
+create table if not exists product_catalog (
+	color text,
+    description text,
+    image ascii,
+    in_store_availability Boolean,
+    manufacturer text,
+    model_number text,
+    name text,
+    regular_price double,
+    short_description text,
+    sku ascii,
+    thumbnail_image text,
+    upc text,
+    PRIMARY KEY (sku)
+);
+
+
+
 
 
 

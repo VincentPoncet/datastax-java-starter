@@ -38,13 +38,18 @@ public class Service {
     public List<SellingProduct> getMostSoldProductsByCustomer(java.util.UUID customerId) {
         List<Order> orders = dao.getAllOrdersByCustomer(customerId);
 
-        Map<UUID, Double> totalSellByProductMap = orders.stream()
+        Map<String, Double> totalSellByProductCountMap = orders.stream()
                 .flatMap(o ->  o.getOrderLines().stream())
-                .map( ol -> new SellingProduct(ol.getProductId(), ol.getQuantity(), ol.getTotalPrice()) )
-                .collect(Collectors.groupingBy(SellingProduct::getProductId, Collectors.summingDouble(o2 -> o2.getSaleCount())));
+                .map( ol -> new SellingProduct(ol.getSku(), ol.getQuantity(), ol.getTotalPrice()) )
+                .collect(Collectors.groupingBy(SellingProduct::getSku, Collectors.summingDouble(o2 -> o2.getSaleCount())));
+
+        Map<String, Double> totalSellByProductValueMap = orders.stream()
+                .flatMap(o ->  o.getOrderLines().stream())
+                .map( ol -> new SellingProduct(ol.getSku(), ol.getQuantity(), ol.getTotalPrice()) )
+                .collect(Collectors.groupingBy(SellingProduct::getSku, Collectors.summingDouble(o2 -> o2.getSaleValue())));
 
         List<SellingProduct> totalSellByProductList = new ArrayList<SellingProduct>();
-        totalSellByProductMap.forEach( (k,v) -> totalSellByProductList.add( new SellingProduct(k,v) ) );
+        totalSellByProductCountMap.forEach( (k,v) -> totalSellByProductList.add( new SellingProduct(k,v, totalSellByProductValueMap.get(k)) ) );
 
         Collections.sort(totalSellByProductList, Collections.reverseOrder());
 

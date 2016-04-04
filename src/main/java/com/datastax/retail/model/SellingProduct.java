@@ -12,7 +12,7 @@ public class SellingProduct implements Comparable<SellingProduct> {
 
 	@PartitionKey
 	@Column(name = "product_id")
-	private UUID productId;
+	private String sku;
 
 	@Column(name = "sale_count")
 	private double saleCount;
@@ -25,14 +25,14 @@ public class SellingProduct implements Comparable<SellingProduct> {
 		super();
 	}
 
-	public UUID getProductId() {
+	public String getSku() {
 
-        return productId;
+        return sku;
 	}
 
-	public void setProductId(UUID productId) {
+	public void setSku(String sku) {
 
-        this.productId = productId;
+        this.sku = sku;
 	}
 
 	public double getSaleCount() {
@@ -53,15 +53,15 @@ public class SellingProduct implements Comparable<SellingProduct> {
         this.saleValue = saleValue;
     }
 
-    public  SellingProduct( UUID productId, double saleCount, double saleValue ){
-        this.productId = productId;
+    public  SellingProduct( String sku, double saleCount, double saleValue ){
+        this.sku = sku;
         this.saleCount = saleCount;
         this.saleValue = saleValue;
     }
 
 	@Override
 	public String toString() {
-		return "SellingProduct [productId=" + productId + ", saleCount=" + saleCount + ", saleValue=" + saleValue+ "]";
+		return "SellingProduct [sku=" + sku + ", saleCount=" + saleCount + ", saleValue=" + saleValue+ "]";
 	}
 
     @Override
