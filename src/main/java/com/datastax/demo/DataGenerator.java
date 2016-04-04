@@ -170,11 +170,9 @@ public class DataGenerator extends RunCQLFile {
 	
     public static void main(String[] args) {
 
+    	// Setup schema if not exists
     	String datGenCreatDDLPath = PropertyHelper.getProperty("datGenCreatDDLPath","cql/create_cassandra_ddl.cql");
     	DataGenerator client = new DataGenerator(datGenCreatDDLPath);
-    	//DataGenerator client = new DataGenerator("cql/create_cassandra_ddl.cql");
-    	
-    	
 		client.internalSetup();
 		
 		
