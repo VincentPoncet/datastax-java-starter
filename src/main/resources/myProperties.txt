@@ -1,5 +1,6 @@
 contactPoints 10.10.11.10
 schemPopDataPath cql/test_data.cql
 schemSetDDLPath cql/create_schema.cql
-datGenDataPath src/main/resources/products.json
+datGenProdDataPath src/main/resources/products.json
+datGenAccDataPath src/main/resources/accessories.json
 schemTrDwnPath cql/drop_schema.cql

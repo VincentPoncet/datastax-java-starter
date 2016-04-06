@@ -46,6 +46,21 @@ create table if not exists product_catalog (
     PRIMARY KEY (sku)
 );
 
+create table if not exists product_accessories (
+	color text,
+    description text,
+    image ascii,
+    in_store_availability Boolean,
+    manufacturer text,
+    model_number text,
+    name text,
+    regular_price double,
+    short_description text,
+    sku ascii,
+    thumbnail_image text,
+    upc text,
+    PRIMARY KEY (sku)
+);
 
 
 
