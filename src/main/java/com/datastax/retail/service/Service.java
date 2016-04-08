@@ -3,6 +3,8 @@ package com.datastax.retail.service;
 import com.datastax.demo.utils.PropertyHelper;
 import com.datastax.retail.dao.RetailDao;
 import com.datastax.retail.model.Order;
+import com.datastax.retail.model.Product;
+import com.datastax.retail.model.ProductRecommendation;
 import com.datastax.retail.model.SellingProduct;
 
 import java.util.*;
@@ -99,6 +101,14 @@ public class Service {
         });
 
         return totalSellByProductList;
+    }
+
+
+    public List<Product> getRecommendedProductsBySku(String sku) {
+
+        ProductRecommendation productRecommendation = dao.getProductRecommendation(sku);
+
+        return productRecommendation.getRecommendedProducts();
     }
 
 }
