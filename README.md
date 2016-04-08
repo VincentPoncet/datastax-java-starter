@@ -50,9 +50,11 @@ To see Top50 Selling Products
 
     http://localhost:8080/datastax-starter/rest/getTop50CountSellingProducts
     http://localhost:8080/datastax-starter/rest/getTop50ValueSellingProducts
+    
+To see Recommendations for one Product
 
+    http://localhost:8080/datastax-starter/rest/getRecommendedProductsBySku/a4a70900-24e1-11df-8924-001ff3591712
 
-warning : com.datastax.retail.service has IP in the code, change it to localhost.
 
 DSE contactpoints can be added at src/main/resources/myProperties.txt
 
