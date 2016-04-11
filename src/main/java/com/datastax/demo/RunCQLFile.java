@@ -1,22 +1,20 @@
 package com.datastax.demo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.datastax.demo.utils.FileUtils;
 import com.datastax.demo.utils.PropertyHelper;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.exceptions.InvalidQueryException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RunCQLFile {
 
-	private static Logger logger = LoggerFactory.getLogger(RunCQLFile.class);
 	static String CREATE_KEYSPACE;
 	static String DROP_KEYSPACE;
-
-	private Cluster cluster;
+	private static Logger logger = LoggerFactory.getLogger(RunCQLFile.class);
 	private static Session session;
+	private Cluster cluster;
 	private String CQL_FILE;
 
 	RunCQLFile(String cqlFile) {
@@ -69,7 +67,8 @@ public class RunCQLFile {
 
 	void run(String cql){
 		logger.info("Running : " + cql);
-		session.execute(cql);
+		if (!(cql.startsWith("--") || cql.startsWith("//")))
+			session.execute(cql);
 	}
 
 	void sleep(int i) {
