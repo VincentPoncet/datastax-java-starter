@@ -32,7 +32,9 @@ public class RetailDao {
 	private Mapper<ProductRecommendation> productRecommendationMapper;
 
 	private ProductCatalogAccessor prodAccessor;
-
+	
+	private ProductAccessoriesAccessor accessoriesAccessor;
+	
 	public RetailDao(String[] contactPoints) {
 
 		Cluster cluster = Cluster.builder().addContactPoints(contactPoints).build();
@@ -50,6 +52,9 @@ public class RetailDao {
 
 		manager.mapper(ProductCatalog.class);
 		this.prodAccessor = manager.createAccessor(ProductCatalogAccessor.class);
+		
+		manager.mapper(ProductAccessories.class);
+		this.accessoriesAccessor = manager.createAccessor(ProductAccessoriesAccessor.class);
 	}
 
 	public List<SellingProduct> getTop50SellingProducts() {
@@ -108,6 +113,51 @@ public class RetailDao {
 			facetMap.put((String) field, facetList);
 		}
 		return facetMap;
+	}
+
+	public Map<String, List<ProductAccessoriesFacet>> getAccessoriesSolrFacets(String search_term,
+			List<String> facet_columns) {
+		
+		final Map<String, List<ProductAccessoriesFacet>> facetMap = new HashMap<>();
+
+		String solr_query = SolrHelper.makeSolrFacetString(search_term, facet_columns);
+
+		StringBuilder statement = new StringBuilder().append("SELECT * FROM product_accessories WHERE solr_query = ")
+				.append(solr_query);
+
+		ResultSet resultSet = session.execute(statement.toString());
+
+		String facet_json = resultSet.one().getString("facet_fields");
+
+		JSONObject jsonObj = (JSONObject) JSONValue.parse(facet_json);
+		for (Object field : jsonObj.keySet()) {
+
+			JSONObject facets = (JSONObject) jsonObj.get(field);
+
+			List<ProductAccessoriesFacet> facetList = new ArrayList<>();
+
+			for (Object entry : facets.entrySet()) {
+				Map.Entry<String, Long> j = (Map.Entry<String, Long>) entry;
+				facetList.add(new ProductAccessoriesFacet(j.getKey(), j.getValue()));
+			}
+			facetList.sort(new Comparator<ProductAccessoriesFacet>() {
+				@Override
+				public int compare(ProductAccessoriesFacet o1, ProductAccessoriesFacet o2) {
+					// Note: opposite of normal for reverse sort
+					return -o1.amount.compareTo(o2.amount);
+				}
+			});
+			facetMap.put((String) field, facetList);
+		}
+		return facetMap;
+		
+	}
+
+	public List<ProductAccessories> getAccessoriesSolrQuery(String search_term, String filter_by) {
+		String solr_query = SolrHelper.makeSolrQueryString(search_term, filter_by);
+		solr_query = "{" + solr_query + "}";
+
+		return accessoriesAccessor.getAll(solr_query).all();
 	}
 
 }

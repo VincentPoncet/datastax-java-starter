@@ -4,6 +4,8 @@ import com.datastax.demo.utils.PropertyHelper;
 import com.datastax.retail.dao.RetailDao;
 import com.datastax.retail.model.Order;
 import com.datastax.retail.model.Product;
+import com.datastax.retail.model.ProductAccessories;
+import com.datastax.retail.model.ProductAccessoriesFacet;
 import com.datastax.retail.model.ProductCatalog;
 import com.datastax.retail.model.ProductCatalogFacet;
 import com.datastax.retail.model.ProductRecommendation;
@@ -117,6 +119,19 @@ public class Service {
 		Map<String, List<ProductCatalogFacet>> pcf = dao.getProductSolrFacets(search_term, facet_columns);
 
 		return pcf;
+	}
+
+	public Map<String, List<ProductAccessoriesFacet>> getAccessoriesSolrFacets(String search_term,
+			List<String> facet_columns) {
+		Map<String, List<ProductAccessoriesFacet>> pcf = dao.getAccessoriesSolrFacets(search_term, facet_columns);
+
+		return pcf;
+	}
+
+	public List<ProductAccessories> getAccessoriesSolrQuery(String search_term, String filter_by) {
+		List<ProductAccessories> pc = dao.getAccessoriesSolrQuery(search_term, filter_by);
+
+		return pc;
 	}
 
 }

@@ -2,6 +2,8 @@ package com.datastax.retail.webservice;
 
 import com.datastax.retail.model.Order;
 import com.datastax.retail.model.Product;
+import com.datastax.retail.model.ProductAccessories;
+import com.datastax.retail.model.ProductAccessoriesFacet;
 import com.datastax.retail.model.ProductCatalog;
 import com.datastax.retail.model.ProductCatalogFacet;
 import com.datastax.retail.model.SellingProduct;
@@ -107,15 +109,50 @@ public class RetailWS {
 		return Response.status(Status.OK).entity(result).build();
 	}
 
+	
 	@GET
-	@Path("/getProductSolrFacets/{search_term}")
+		@Path("/getProductSolrFacets/{search_term}")
+		@Produces(MediaType.APPLICATION_JSON)
+		public Response getProductSolrFacets(@PathParam("search_term") java.lang.String search_term,
+				@QueryParam("fc") List<String> facet_columns) {
+	
+			Map<String, List<ProductCatalogFacet>> result = service.getProductSolrFacets(search_term, facet_columns);
+	
+			return Response.status(Status.OK).entity(result).build();
+		}
+	
+	
+	@GET
+	@Path("/getAccessoriesSolrFacets/{search_term}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProductSolrFacets(@PathParam("search_term") java.lang.String search_term,
+	public Response getAccessoriesSolrFacets(@PathParam("search_term") java.lang.String search_term,
 			@QueryParam("fc") List<String> facet_columns) {
 
-		Map<String, List<ProductCatalogFacet>> result = service.getProductSolrFacets(search_term, facet_columns);
+		Map<String, List<ProductAccessoriesFacet>> result = service.getAccessoriesSolrFacets(search_term, facet_columns);
 
 		return Response.status(Status.OK).entity(result).build();
 	}
 
+	@GET
+	@Path("/getAccessoriesSolrQuery/{search_term}/{filter_by}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAccessoriesSolrQuery(@PathParam("search_term") java.lang.String search_term,
+			@PathParam("filter_by") java.lang.String filter_by) {
+
+		List<ProductAccessories> result = service.getAccessoriesSolrQuery(search_term, filter_by);
+
+		return Response.status(Status.OK).entity(result).build();
+	}
+
+	@GET
+	@Path("/getAccessoriesSolrQuery/{search_term}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAccessoriesSolrQuery(@PathParam("search_term") java.lang.String search_term) {
+
+		List<ProductAccessories> result = service.getAccessoriesSolrQuery(search_term, null);
+
+		return Response.status(Status.OK).entity(result).build();
+	}
+
+	
 }
