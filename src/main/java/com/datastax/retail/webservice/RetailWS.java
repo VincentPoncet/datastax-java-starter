@@ -1,20 +1,10 @@
 package com.datastax.retail.webservice;
 
-import com.datastax.retail.model.Order;
-import com.datastax.retail.model.Product;
-import com.datastax.retail.model.ProductAccessories;
-import com.datastax.retail.model.ProductAccessoriesFacet;
-import com.datastax.retail.model.ProductCatalog;
-import com.datastax.retail.model.ProductCatalogFacet;
-import com.datastax.retail.model.SellingProduct;
+import com.datastax.retail.model.*;
 import com.datastax.retail.service.Service;
 
 import javax.jws.WebService;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -83,7 +73,7 @@ public class RetailWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getRecommendedProductsBySku(@PathParam("sku") String sku) {
 
-		List<Product> result = service.getRecommendedProductsBySku(sku);
+		List<RecommendedProduct> result = service.getRecommendedProductsBySku(sku);
 
 		return Response.status(Status.OK).entity(result).build();
 	}
