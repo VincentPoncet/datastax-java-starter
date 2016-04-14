@@ -1,6 +1,6 @@
-contactPoints 10.10.11.10
+contactPoints 172.16.123.1
 schemPopDataPath cql/test_data.cql
 schemSetDDLPath cql/create_schema.cql
-datGenProdDataPath src/main/resources/products.json
-datGenAccDataPath src/main/resources/accessories.json
+datGenProdDataPath src/main/resources/dataGeneratorData/products.json
+datGenAccDataPath src/main/resources/dataGeneratorData/accessories.json
 schemTrDwnPath cql/drop_schema.cql

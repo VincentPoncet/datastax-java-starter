@@ -1,6 +1,23 @@
 package com.datastax.demo;
 
 import com.datastax.demo.utils.PropertyHelper;
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.ResultSet;
+import com.datastax.driver.core.Row;
+import com.datastax.driver.core.Session;
+import com.datastax.driver.core.utils.UUIDs;
+import com.datastax.driver.mapping.Mapper;
+import com.datastax.driver.mapping.MappingManager;
+import com.datastax.retail.model.ProductAccessories;
+import com.datastax.retail.model.ProductCatalog;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.io.FileReader;
+import java.util.Iterator;
+import java.util.Random;
+import java.util.UUID;
 
 // This is a data generator for Packathon.
 // This program accepts a json file generated from the BestBuy API.
@@ -13,20 +30,6 @@ import com.datastax.demo.utils.PropertyHelper;
 //      randomly submit product orders on behalf of the clients.
 //      the quantity of products ordered at any one time is between 1-100.
 //      this program accepts as arguments: host timeToSleepInMilliseconds pathToJsonFile
-
-import com.datastax.driver.core.*;
-import com.datastax.driver.core.utils.UUIDs;
-import com.datastax.driver.mapping.Mapper;
-import com.datastax.driver.mapping.MappingManager;
-import com.datastax.retail.model.ProductAccessories;
-import com.datastax.retail.model.ProductCatalog;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import java.io.FileReader;
-import java.util.*;
 
 public class DataGenerator {
 
@@ -261,7 +264,7 @@ public class DataGenerator {
         }
 
         // Location of the json file to load
-        String datGenDataPath = PropertyHelper.getProperty("datGenProdDataPath","src/main/resources/products.json");
+        String datGenDataPath = PropertyHelper.getProperty("datGenProdDataPath", "src/Dat/resources/dataGeneratorData/products.json");
         if (args.length > 2) {
         	datGenDataPath = args[2];
         }
@@ -274,7 +277,7 @@ public class DataGenerator {
         numberOfProducts = loadJson(datGenDataPath,"product_catalog");
 
      // Location of the json file to load
-        datGenDataPath = PropertyHelper.getProperty("datGenAccDataPath","src/main/resources/accessories.json");
+        datGenDataPath = PropertyHelper.getProperty("datGenAccDataPath", "src/main/resources/dataGeneratorData/accessories.json");
         if (args.length > 3) {
         	datGenDataPath = args[3];
         }
