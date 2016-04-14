@@ -2,4 +2,5 @@
 
 
 // create csv file out of orders table for the JMeter test
-cqlsh 10.10.11.10 -e "SELECT customer_id FROM retail_ks.orders" | sed -e 's/^[ \t]*//' > rest_jmeter_cust_ids.txt
+
+cqlsh 10.10.11.10 -e "SELECT customer_id FROM retail_ks.orders" | sed -e 's/^[ \t]*//' | sed -e '1,3d' > rest_jmeter_cust_ids.txt

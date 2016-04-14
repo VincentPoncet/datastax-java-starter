@@ -21,6 +21,12 @@ public class ProductCatalog {
     private String 	thumbnail_image;
     private String 	upc;
     
+    
+    
+    public ProductCatalog(){
+    	super();
+    }
+    
     public ProductCatalog(String sku, String color, String description, 
     		String image, Boolean in_store_availability, String manufacturer, 
     		String model_number,String name,Double regular_price, String short_description, 
