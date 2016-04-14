@@ -111,9 +111,9 @@ public class DataGenerator {
 	public static void placeOrders() {
 
         // Process Product table
-        ResultSet results = session.execute("SELECT sku, name, regular_price FROM retail_ks.product_catalog;");
+        ResultSet results = session.execute("SELECT sku, name, regular_price, thumbnail_image FROM retail_ks.product_catalog;");
         int numberOfProducts = results.getAvailableWithoutFetching();
-        String[][] productList = new String[numberOfProducts][3];
+        String[][] productList = new String[numberOfProducts][4];
         // Build product array
         int counter = 0;
         for (Row row : results) {
@@ -121,13 +121,14 @@ public class DataGenerator {
             productList[counter][1] = row.getString("name");
             double regular_price = row.getDouble("regular_price");
             productList[counter][2] = Double.toString(regular_price);
+            productList[counter][3] = row.getString("thumbnail_image");
             counter++;
         }
 
         // Process Accessories table
-        ResultSet results2 = session.execute("SELECT sku, name, regular_price FROM retail_ks.product_accessories;");
+        ResultSet results2 = session.execute("SELECT sku, name, regular_price, thumbnail_image FROM retail_ks.product_accessories;");
         int numberOfProducts2 = results2.getAvailableWithoutFetching();
-        String[][] productList2 = new String[numberOfProducts2][3];
+        String[][] productList2 = new String[numberOfProducts2][4];
         // Build product array
         int counter2 = 0;
         for (Row row2 : results2) {
@@ -135,6 +136,7 @@ public class DataGenerator {
             productList2[counter2][1] = row2.getString("name");
             double regular_price2 = row2.getDouble("regular_price");
             productList2[counter2][2] = Double.toString(regular_price2);
+            productList2[counter2][3] = row2.getString("thumbnail_image");
             counter2++;
         }
 
@@ -185,6 +187,7 @@ public class DataGenerator {
             String itemsToAddToCart = "{" +
                     "sku:'" + productList[randomProduct][0] + "',"
                     + "product_name:'" + productList[randomProduct][1] + "',"
+                    + "thumbnail_image:'" + productList[randomProduct][3] + "',"
                     + "quantity:" + randomQuantity + ","
                     + "unit_price:" + productList[randomProduct][2] + ","
                     + "total_price:" + total_price
@@ -217,6 +220,7 @@ public class DataGenerator {
                 itemsToAddToCart = itemsToAddToCart + ",{" +
                         "sku:'" + productList2[randomProduct2][0] + "',"
                         + "product_name:'" + productList2[randomProduct2][1].replaceAll("\"","\\\"").replaceAll("'","`") + "',"
+                        + "thumbnail_image:'" + productList2[randomProduct2][3] + "',"
                         + "quantity:" + randomQuantity2 + ","
                         + "unit_price:" + productList2[randomProduct2][2] + ","
                         + "total_price:" + total_price2
