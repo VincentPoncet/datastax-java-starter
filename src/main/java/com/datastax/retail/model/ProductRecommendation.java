@@ -17,7 +17,7 @@ public class ProductRecommendation {
     @Column(name = "product_name")
     private String productName;
     @Column(name = "recommended_products")
-    private List<Product> recommendedProducts;
+    private List<RecommendedProduct> recommendedProducts;
 
     public ProductRecommendation() {
         super();
@@ -39,11 +39,11 @@ public class ProductRecommendation {
         this.productName = productName;
     }
 
-    public List<Product> getRecommendedProducts() {
+    public List<RecommendedProduct> getRecommendedProducts() {
         return recommendedProducts;
     }
 
-    public void setRecommendedProducts(List<Product> recommendedProducts) {
+    public void setRecommendedProducts(List<RecommendedProduct> recommendedProducts) {
         this.recommendedProducts = recommendedProducts;
     }
 

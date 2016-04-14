@@ -6,6 +6,7 @@ use retail_ks;
 create type if not exists order_line (
     sku ascii,
     product_name text,
+    thumbnail_image text,
     quantity double,
     unit_price double,
     total_price double
@@ -24,6 +25,8 @@ create table if not exists orders (
 
 create table if not exists top50_selling_products (
     sku ascii,
+    product_name text,
+    thumbnail_image text,
     sale_count double,
     sale_value double,
     PRIMARY KEY (sku)
@@ -62,15 +65,17 @@ create table if not exists product_accessories (
     PRIMARY KEY (sku)
 );
 
-create type if not exists product (
+create type if not exists recommended_product (
     sku ascii,
-    product_name text
+    product_name text,
+    regular_price double,
+    thumbnail_image text
 );
 
 create table if not exists product_recommendations (
     sku ascii,
     product_name text,
-    recommended_products list<frozen<product>>,
+    recommended_products list<frozen<recommended_product>>,
     PRIMARY KEY (sku)
 );
 

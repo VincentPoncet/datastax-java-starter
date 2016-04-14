@@ -3,8 +3,8 @@ package com.datastax.retail.service;
 import com.datastax.demo.utils.PropertyHelper;
 import com.datastax.retail.dao.RetailDao;
 import com.datastax.retail.model.Order;
-import com.datastax.retail.model.Product;
 import com.datastax.retail.model.ProductRecommendation;
+import com.datastax.retail.model.RecommendedProduct;
 import com.datastax.retail.model.SellingProduct;
 
 import java.util.*;
@@ -60,17 +60,16 @@ public class Service {
 
         Map<String, Double> totalSellByProductCountMap = orders.stream()
                 .flatMap(o ->  o.getOrderLines().stream())
-                .map( ol -> new SellingProduct(ol.getSku(), ol.getQuantity(), ol.getTotalPrice()) )
+                .map(ol -> new SellingProduct(ol.getSku(), ol.getProductName(), ol.getThumbnailImage(), ol.getQuantity(), ol.getTotalPrice()))
                 .collect(Collectors.groupingBy(SellingProduct::getSku, Collectors.summingDouble(SellingProduct::getSaleCount)));
-
 
         Map<String, Double> totalSellByProductValueMap = orders.stream()
                 .flatMap(o ->  o.getOrderLines().stream())
-                .map( ol -> new SellingProduct(ol.getSku(), ol.getQuantity(), ol.getTotalPrice()) )
+                .map(ol -> new SellingProduct(ol.getSku(), ol.getProductName(), ol.getThumbnailImage(), ol.getQuantity(), ol.getTotalPrice()))
                 .collect(Collectors.groupingBy(SellingProduct::getSku, Collectors.summingDouble(SellingProduct::getSaleValue)));
 
         List<SellingProduct> totalSellByProductList = new ArrayList<SellingProduct>();
-        totalSellByProductCountMap.forEach( (k,v) -> totalSellByProductList.add( new SellingProduct(k,v, totalSellByProductValueMap.get(k)) ) );
+        totalSellByProductCountMap.forEach((k, v) -> totalSellByProductList.add(new SellingProduct(k, new String(), new String(), v, totalSellByProductValueMap.get(k))));
         return totalSellByProductList;
     }
 
@@ -104,11 +103,15 @@ public class Service {
     }
 
 
-    public List<Product> getRecommendedProductsBySku(String sku) {
+    public List<RecommendedProduct> getRecommendedProductsBySku(String sku) {
 
         ProductRecommendation productRecommendation = dao.getProductRecommendation(sku);
 
-        return productRecommendation.getRecommendedProducts();
+        List<RecommendedProduct> result = new LinkedList<RecommendedProduct>();
+
+        if (productRecommendation != null) result = productRecommendation.getRecommendedProducts();
+
+        return result;
     }
 
 }

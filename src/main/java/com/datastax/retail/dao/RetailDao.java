@@ -30,19 +30,20 @@ public class RetailDao {
 
 	public RetailDao(String[] contactPoints) {
 
-		Cluster cluster = Cluster.builder().addContactPoints(contactPoints).build();
 
-		this.session = cluster.connect(keyspace);
-		this.manager = new MappingManager(session);
+		if (this.session == null) {
+			Cluster cluster = Cluster.builder().addContactPoints(contactPoints).build();
+			this.session = cluster.connect(keyspace);
+			this.manager = new MappingManager(session);
 
-		this.sellingProductMapper = manager.mapper(SellingProduct.class);
-		this.sellingProductAccessor = manager.createAccessor(SellingProductAccessor.class);
+			this.sellingProductMapper = manager.mapper(SellingProduct.class);
+			this.sellingProductAccessor = manager.createAccessor(SellingProductAccessor.class);
 
-		this.orderMapper = manager.mapper(Order.class);
-		this.orderAccessor = manager.createAccessor(OrderAccessor.class);
+			this.orderMapper = manager.mapper(Order.class);
+			this.orderAccessor = manager.createAccessor(OrderAccessor.class);
 
-		this.productRecommendationMapper = manager.mapper(ProductRecommendation.class);
-
+			this.productRecommendationMapper = manager.mapper(ProductRecommendation.class);
+		}
 	}
 
 

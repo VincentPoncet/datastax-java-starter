@@ -1,7 +1,7 @@
 package com.datastax.retail.webservice;
 
 import com.datastax.retail.model.Order;
-import com.datastax.retail.model.Product;
+import com.datastax.retail.model.RecommendedProduct;
 import com.datastax.retail.model.SellingProduct;
 import com.datastax.retail.service.Service;
 import org.slf4j.Logger;
@@ -82,7 +82,7 @@ public class RetailWS {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getRecommendedProductsBySku(@PathParam("sku") String sku) {
 
-        List<Product> result = service.getRecommendedProductsBySku(sku);
+        List<RecommendedProduct> result = service.getRecommendedProductsBySku(sku);
 
         return Response.status(Status.OK).entity(result).build();
     }

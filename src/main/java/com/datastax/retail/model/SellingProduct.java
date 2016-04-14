@@ -12,6 +12,12 @@ public class SellingProduct {
 	@Column(name = "sku")
 	private String sku;
 
+	@Column(name = "product_name")
+	private String productName;
+
+	@Column(name = "thumbnail_image")
+	private String thumbnailImage;
+
 	@Column(name = "sale_count")
 	private double saleCount;
 
@@ -23,8 +29,10 @@ public class SellingProduct {
 		super();
 	}
 
-	public SellingProduct(String sku, double saleCount, double saleValue) {
+	public SellingProduct(String sku, String productName, String thumbnailImage, double saleCount, double saleValue) {
 		this.sku = sku;
+		this.productName = productName;
+		this.thumbnailImage = thumbnailImage;
 		this.saleCount = saleCount;
 		this.saleValue = saleValue;
 	}
@@ -37,6 +45,22 @@ public class SellingProduct {
 	public void setSku(String sku) {
 
         this.sku = sku;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getThumbnailImage() {
+		return thumbnailImage;
+	}
+
+	public void setThumbnailImage(String thumbnailImage) {
+		this.thumbnailImage = thumbnailImage;
 	}
 
 	public double getSaleCount() {
