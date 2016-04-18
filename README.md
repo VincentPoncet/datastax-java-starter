@@ -59,7 +59,9 @@ To see Recommendations for one Product
 
     http://localhost:8080/datastax-starter/rest/getRecommendedProductsBySku/a4a70900-24e1-11df-8924-001ff3591712
 
+To run Spark Top50MostSoldProduct and ProductRecommendations
 
+     dse spark -i src/main/scala/datastaxretailspark.scala 
 
 
 
