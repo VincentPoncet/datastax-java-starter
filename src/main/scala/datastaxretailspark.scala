@@ -20,10 +20,6 @@ val ProductCoOccurance = orders.
 ).
   map(pco => ProductRecommendations(pco._1, "", pco._2))
 
-/**
-  * Created by vincentponcet on 18/04/2016.
-  */
-
 case class OrderLine(
                       sku: String,
                       productName: String,
@@ -47,6 +43,12 @@ case class RecommendedProduct(
                                regularPrice: Double,
                                thumbnailImage: String
                              )
+
+/**
+  * Created by vincentponcet on 18/04/2016.
+  */
+
+
 
 Top50CountSellingProducts.saveToCassandra("retail_ks", "top50_selling_products",
   SomeColumns("sku", "product_name", "thumbnail_image", "sale_count", "sale_value"))
