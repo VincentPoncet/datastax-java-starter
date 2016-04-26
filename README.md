@@ -61,7 +61,7 @@ To see Recommendations for one Product
 
 To run Spark Top50MostSoldProduct and ProductRecommendations
 
-     dse spark -i src/main/scala/datastaxretailspark.spar-shell
+     dse spark -i src/main/scala/datastaxretailspark.spark-shell
 
 
 

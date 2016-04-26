@@ -57,9 +57,10 @@ val ProductCoOccurance = orders.
                val TotalSumBySku = groupedBySku.map( listOfProduct => listOfProduct.reduce( (a,b) => (a._1, (a._2._1, a._2._2, a._2._3+b._2._3, a._2._4, a._2._5+b._2._5))) )
                // take top50 product2 sorted on summed value
                val Top50Value = TotalSumBySku.sortBy(-_._2._5).slice(0,50)
+               // create a RecommendedProduct item to fit table structure
                Top50Value.map( lop => RecommendedProduct(lop._1, lop._2._1, lop._2._4  , lop._2._2  ))
-               // merge
                         }.
+            // create a ProductRecommendation to fit table structure
             map( pco => ProductRecommendations(pco._1, "", pco._2))
 
 ProductCoOccurance.toDF.write.format("org.apache.spark.sql.cassandra").
