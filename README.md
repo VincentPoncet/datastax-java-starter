@@ -31,6 +31,12 @@ To load data with the DataGenerator
 	Make sure you have the path in myProperties.txt file eg src/main/resources/product.json.
 	Location of the file can be changed in src/main/resources/myProperties.txt
 
+To create the Solr Core 
+
+	dsetool create_core retail_ks.product_catalog generateResources=true reindex=true
+	dsetool create_core retail_ks.product_accessories generateResources=true reindex=true
+
+
 	
 To start the web server run 
 
