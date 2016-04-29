@@ -26,19 +26,18 @@
 	You do not need to use widgets if you dont want to. Simply remove 
 	the <section></section> and you can use wells or panels instead 
 	-->
-
-<div class="well well-sm">
+	
+	<div class="well well-sm">
 		<div class="input-group">
-			<input class="form-control input-lg" type="text" id="fa-icon-search" placeholder="Search for an Product ...">
+			<input class="form-control input-lg" type="text" id="fa-icon-search" placeholder="Search for an Accessorie ...">
 			<span class="input-group-addon"><i class="fa fa-fw fa-lg fa-search"></i></span>
 		</div>
 	</div>
-	
-	
+
 <!-- widget grid -->
 <section id="widget-grid" class="">
 
-	<!-- JQuery Dom creation with restclient.js -->
+	
 </section>
 <!-- end widget grid -->
 
@@ -107,12 +106,11 @@
 	var pagefunction = function() {
 		// clears the variable if left blank
 
-		$().productsview('*');
+		$().accessoriesview("*");
 		
 		$('.fa-search').click(function(){
 	        var search = $('#fa-icon-search').val();
-	        
-	        $().productsview(search);
+	        $().accessoriesview(search);
 	    });
 		
 	};
@@ -141,7 +139,7 @@
 	// end destroy
 	
 	// run pagefunction
-		loadScript("js/plugin/restclient/restclient.js",pagefunction);
+		loadScript("js/plugin/restclient/restclientAccessories.js",pagefunction);
 // 	pagefunction();
 	
 </script>

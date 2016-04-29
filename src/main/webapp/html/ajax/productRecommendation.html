@@ -8,7 +8,7 @@
 
 			<!-- PAGE HEADER -->
 			<i class="fa-fw fa fa-home"></i> E-commerce <span>> Products
-				View </span>
+				Recommendation View </span>
 		</h1>
 	</div>
 	<!-- end col -->
@@ -107,12 +107,12 @@
 	var pagefunction = function() {
 		// clears the variable if left blank
 
-		$().productsview('*');
+		$().prodrecomview('*');
 		
 		$('.fa-search').click(function(){
 	        var search = $('#fa-icon-search').val();
 	        
-	        $().productsview(search);
+	        $().prodrecomview(search);
 	    });
 		
 	};
@@ -141,7 +141,7 @@
 	// end destroy
 	
 	// run pagefunction
-		loadScript("js/plugin/restclient/restclient.js",pagefunction);
+		loadScript("js/plugin/restclient/prodrecomrestclient.js",pagefunction);
 // 	pagefunction();
 	
 </script>
