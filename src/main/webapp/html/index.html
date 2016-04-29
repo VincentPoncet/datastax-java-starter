@@ -111,9 +111,9 @@
 				<span id="logo"> <img src="img/logo.png" alt="SmartAdmin"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
-<!-- 				Note: The activity badge color changes when clicked and resets the number to 0
-<!-- 					 Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-<!-- 				<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span> -->
+				<!-- Note: The activity badge color changes when clicked and resets the number to 0
+					 Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
+				<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
 
 				<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
 				<div class="ajax-dropdown">
@@ -197,34 +197,34 @@
 					</li>
 				</ul>
 
-<!-- 				logout button -->
-<!-- 				<div id="logout" class="btn-header transparent pull-right"> -->
-<!-- 					<span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span> -->
-<!-- 				</div> -->
-<!-- 				end logout button -->
+				<!-- logout button -->
+				<div id="logout" class="btn-header transparent pull-right">
+					<span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+				</div>
+				<!-- end logout button -->
 
-<!-- 				search mobile button (this is hidden till mobile view port) -->
-<!-- 				<div id="search-mobile" class="btn-header transparent pull-right"> -->
-<!-- 					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span> -->
-<!-- 				</div> -->
-<!-- 				end search mobile button -->
+				<!-- search mobile button (this is hidden till mobile view port) -->
+				<div id="search-mobile" class="btn-header transparent pull-right">
+					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
+				</div>
+				<!-- end search mobile button -->
 				
-<!-- 				#SEARCH -->
-<!-- 				input: search field -->
-<!-- 				<form action="#ajax/search.html" class="header-search pull-right"> -->
-<!-- 					<input id="search-fld" type="text" name="param" placeholder="Find reports and more"> -->
-<!-- 					<button type="submit"> -->
-<!-- 						<i class="fa fa-search"></i> -->
-<!-- 					</button> -->
-<!-- 					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a> -->
-<!-- 				</form> -->
-<!-- 				end input: search field -->
+				<!-- #SEARCH -->
+				<!-- input: search field -->
+				<form action="#ajax/search.html" class="header-search pull-right">
+					<input id="search-fld" type="text" name="param" placeholder="Find reports and more">
+					<button type="submit">
+						<i class="fa fa-search"></i>
+					</button>
+					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+				</form>
+				<!-- end input: search field -->
 
-<!-- 				fullscreen button -->
-<!-- 				<div id="fullscreen" class="btn-header transparent pull-right"> -->
-<!-- 					<span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span> -->
-<!-- 				</div> -->
-<!-- 				end fullscreen button -->
+				<!-- fullscreen button -->
+				<div id="fullscreen" class="btn-header transparent pull-right">
+					<span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
+				</div>
+				<!-- end fullscreen button -->
 
 
 
@@ -261,7 +261,9 @@
 							<li class="">
 								<a href="ajax/dashboard.html" title="Dashboard"><span class="menu-item-parent">Analytics Dashboard</span></a>
 							</li>
-							
+							<li class="">
+								<a href="ajax/dashboard-social.html" title="Dashboard"><span class="menu-item-parent">Social Wall</span></a>
+							</li>
 						</ul>	
 					</li>
 
@@ -270,11 +272,7 @@
 						<ul>
 							<li><a href="ajax/orders.html">Orders</a></li>
 							<li><a href="ajax/products-view.html">Products View</a></li>
-							<li><a href="ajax/accessories.html">Accessories View</a></li>
-							<li><a href="ajax/productRecommendation.html">Products Search with Recommendation</a></li>
-							<li><a href="ajax/top50CountSellingProducts.html">Top 50 Count Selling Products View</a></li>
-							<li><a href="ajax/top50ValueSellingProducts.html">Top 50 Value Selling Products View</a></li>
-							
+							<li><a href="ajax/products-detail.html">Products Detail</a></li>
 						</ul>
 					</li>	
 
@@ -295,9 +293,9 @@
 			<!-- RIBBON -->
 			<div id="ribbon">
 
-<!-- 				<span class="ribbon-button-alignment">  -->
-<!-- 					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh" rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true" data-reset-msg="Would you like to RESET all your saved widgets and clear LocalStorage?"><i class="fa fa-refresh"></i></span>  -->
-<!-- 				</span> -->
+				<span class="ribbon-button-alignment"> 
+					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh" rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true" data-reset-msg="Would you like to RESET all your saved widgets and clear LocalStorage?"><i class="fa fa-refresh"></i></span> 
+				</span>
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
@@ -321,6 +319,7 @@
 
 			<!-- #MAIN CONTENT -->
 			<div id="content">
+
 			</div>
 			
 			<!-- END #MAIN CONTENT -->
@@ -332,7 +331,7 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">© 2016 DataStax, All Rights Reserved <span class="hidden-xs"> - Powered by SmartAdmin 1.8.2 </span> <span class="hidden-xs"> - Web Application Framework</span> © 2014-2016</span>
+					<span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> © 2014-2016</span>
 				</div>
 
 				<div class="col-xs-6 col-sm-6 text-right hidden-xs">
@@ -478,6 +477,8 @@
 			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
 		<![endif]-->
 
+		<!-- Demo purpose only -->
+		<script src="js/demo.min.js"></script>
 
 		<!-- MAIN APP JS FILE -->
 		<script src="js/app.min.js"></script>
