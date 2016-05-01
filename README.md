@@ -70,6 +70,9 @@ To run Spark Top50MostSoldProduct and ProductRecommendations
      dse spark -i src/main/scala/datastaxretailspark.spark-shell
 
 
+Link to the start page of the application
+http://localhost:8080/datastax-starter/html/index.html#ajax/dashboard.html
+
 
 #### Solr Queries 
 
