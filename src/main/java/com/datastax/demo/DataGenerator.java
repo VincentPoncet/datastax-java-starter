@@ -140,7 +140,7 @@ public class DataGenerator {
             counter2++;
         }
 
-        int sleepTime = 10;
+        int sleepTime = 0;
         System.out.println("Sending orders every " + sleepTime + " milliseconds");
         Random rand = new Random();
 
@@ -262,7 +262,7 @@ public class DataGenerator {
 		
     	
         // How many milliseconds to sleep in between orders
-        int sleepTime = 10;
+        int sleepTime = 0;
         if (args.length > 1) {
             sleepTime = Integer.parseInt(args[1]);
         }
