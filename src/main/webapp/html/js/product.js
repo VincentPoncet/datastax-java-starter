@@ -37,8 +37,8 @@ function updateRecommendations(sku){
                     //increment row-element count
                     elementHtml += "<div class='col-sm-4 col-md-4 col-lg-3' id='product-row'>";
                     elementHtml += "<div class='product-content product-wrap clearfix'>";
-                    elementHtml += element.productName;
-                    elementHtml += "<div><div class='col-lg-1'>$" + element.regularPrice;
+                    elementHtml += "<a href='index.html?sku="+ element.sku + "#ajax/product.html'>" + element.productName + "</a>";
+                    elementHtml += "<div><div class='col-lg-1'>$" + element.regularPrice + "";
                     elementHtml += "<img class='img-responsive' src='" + element.thumbnailImage + "'></div>";
                     elementHtml += "</div>";
                     elementHtml += "</div>";

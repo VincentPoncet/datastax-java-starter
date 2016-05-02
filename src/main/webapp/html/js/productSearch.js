@@ -30,7 +30,7 @@ function updateProductList(searchValue){
                 elementHtml += "<div class='col-md-7 col-sm-12 col-xs-12'>";
                 elementHtml += "<div class='product-deatil'>";
 
-                elementHtml += "<h5 class='name'><a href='index.html#ajax/product.html?"+ element.sku+ "'>"+ element.manufacturer + " : " + element.model_number  + "</a></h5>";
+                elementHtml += "<h5 class='name'><a href='index.html?sku="+ element.sku+ "#ajax/product.html'>"+ element.manufacturer + " : " + element.model_number  + "</a></h5>";
                 elementHtml += "<p class='price-container'> <span>" + element.regular_price +"</span> </p> <span class='tag1'></span> ";
 
 
