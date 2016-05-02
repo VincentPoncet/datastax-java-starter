@@ -70,9 +70,13 @@ To run Spark Top50MostSoldProduct and ProductRecommendations
      dse spark -i src/main/scala/datastaxretailspark.spark-shell
 
 If you use DSE as default setting, 512MB per executor is too low, so use 
+
      dse spark -i src/main/scala/datastaxretailspark.spark-shell --executor-memory 2G
-or add this line in dse/templates/spark/spark-defaults.conf
+     
+or add this line in dse/resources/spark/conf/spark-defaults.conf
+
      spark.executor.memory 2G
+
 
 Link to the start page of the application
 http://localhost:8080/datastax-starter/html/index.html#ajax/dashboard.html
