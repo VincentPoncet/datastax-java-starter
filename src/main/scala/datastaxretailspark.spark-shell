@@ -31,7 +31,9 @@ case class ProductRecommendations(
 val sqlContext = new org.apache.spark.sql.hive.HiveContext(sc)
 import sqlContext.implicits._
 
-val orders = sc.cassandraTable[Order]("retail_ks", "orders").cache
+import org.apache.spark.storage.StorageLevel._
+
+val orders = sc.cassandraTable[Order]("retail_ks", "orders").persist(MEMORY_AND_DISK)
 val orderlines = orders.flatMap(order => order.OrderLines_).map(ol => (ol.sku, (ol.productName, ol.thumbnailImage, ol.quantity, ol.unitPrice, ol.totalPrice)))
 val soldproducts = orderlines.reduceByKey((a, b) => (a._1, a._2, a._3 + b._3, a._4, a._5 + b._5)).
   map({ case (sku, (productName, thumbnailImage, count, unitPrice, value)) => (sku, productName, thumbnailImage, count, value) })
@@ -49,16 +51,19 @@ val ProductCoOccurance = orders.
             map(ol => (ol.sku, (ol.productName, ol.thumbnailImage, ol.quantity, ol. unitPrice, ol.totalPrice))).filter ( ol3 => ol3._1!=`ol`.sku)
                 ) // for each order, make a list of product cooccurance (product1, product2)
             )
-            ).reduceByKey(_++_). // merge the list per product1
-                mapValues { x =>
-                // for each product1, merge list on key product2
-               val groupedBySku = x.groupBy( { case (sku,(pn, ti, q, up, tp)) => sku } ).values.toList
-               // aggregate value sum of product2
-               val TotalSumBySku = groupedBySku.map( listOfProduct => listOfProduct.reduce( (a,b) => (a._1, (a._2._1, a._2._2, a._2._3+b._2._3, a._2._4, a._2._5+b._2._5))) )
-               // take top50 product2 sorted on summed value
-               val Top50Value = TotalSumBySku.sortBy(-_._2._5).slice(0,50)
-               // create a RecommendedProduct item to fit table structure
-               Top50Value.map( lop => RecommendedProduct(lop._1, lop._2._1, lop._2._4  , lop._2._2  ))
+            ).reduceByKey{ (a,b) =>
+                          // merge the list per product1
+                          val mergedBySku = (a++b)
+                          // for each product1, merge list on key product2
+                          val groupedBySku = mergedBySku.groupBy( { case (sku,(pn, ti, q, up, tp)) => sku } ).values.toList
+                          // aggregate value sum of product2
+                          groupedBySku.map( listOfProduct => listOfProduct.reduce( (a,b) => (a._1, (a._2._1, a._2._2, a._2._3+b._2._3, a._2._4, a._2._5+b._2._5))) )
+                           }.
+                mapValues { TotalSumBySku =>
+                // take top50 product2 sorted on summed value
+                val Top50Value = TotalSumBySku.sortBy(-_._2._5).slice(0,50)
+                // create a RecommendedProduct item to fit table structure
+                Top50Value.map( lop => RecommendedProduct(lop._1, lop._2._1, lop._2._4  , lop._2._2  ))
                         }.
             // create a ProductRecommendation to fit table structure
             map( pco => ProductRecommendations(pco._1, "", pco._2))
