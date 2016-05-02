@@ -83,6 +83,14 @@ object Spark_Retail_Top50_Recommendations {
                     totalPrice: Double
                   )
 
+  case class Top50SellingProducts(
+                                   sku: String,
+                                   productName: String,
+                                   saleCount: Double,
+                                   saleValue: Double,
+                                   thumbnailImage: String
+                                 )
+
   case class RecommendedProduct(
                                  sku: String,
                                  product_name: String,
