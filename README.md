@@ -79,7 +79,8 @@ or add this line in dse/resources/spark/conf/spark-defaults.conf
 
 
 Link to the start page of the application
-http://localhost:8080/datastax-starter/html/index.html#ajax/dashboard.html
+
+    http://localhost:8080/datastax-starter/html/index.html#ajax/products-list.html
 
 
 #### Solr Queries 
