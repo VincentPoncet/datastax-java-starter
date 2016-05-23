@@ -2,7 +2,7 @@
 function updateProductList(searchValue){
 
     $.ajax({
-        url: '/datastax-starter/rest/getProductsSolrQuery/name:' + searchValue,
+        url: '/datastax-starter/rest/getProductsSolrQuery/name:' + searchValue ,
         success: function(dataset) {
             var elementCount = 0;
             //Clear all HTML inside product table

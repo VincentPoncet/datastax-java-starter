@@ -36,6 +36,9 @@ To create the Solr Core
 	dsetool create_core retail_ks.product_catalog generateResources=true reindex=true
 	dsetool create_core retail_ks.product_accessories generateResources=true reindex=true
 
+Solr Admin Page:
+	
+	http://localhost:8983/solr/
 
 	
 To start the web server run 
