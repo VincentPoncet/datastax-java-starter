@@ -29,10 +29,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="datastax-starter-retail" />
+      </profile>
+      <profile default="false" name="Annotation profile for datastax-java-starter" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="datastax-java-starter" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="datastax-java-starter" target="1.8" />
       <module name="datastax-starter" target="1.8" />
       <module name="datastax-starter-retail" target="1.8" />
     </bytecodeTargetLevel>
