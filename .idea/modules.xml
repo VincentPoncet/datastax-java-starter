@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/datastax-starter-retail.iml" filepath="$PROJECT_DIR$/datastax-starter-retail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/datastax-java-starter.iml" filepath="$PROJECT_DIR$/.idea/modules/datastax-java-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/datastax-java-starter-build.iml" filepath="$PROJECT_DIR$/.idea/modules/datastax-java-starter-build.iml" />
     </modules>
   </component>
 </project>

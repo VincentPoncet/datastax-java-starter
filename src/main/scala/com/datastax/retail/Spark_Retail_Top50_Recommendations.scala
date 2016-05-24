@@ -24,10 +24,10 @@ object Spark_Retail_Top50_Recommendations {
     import sqlContext.implicits._
 
     val orders = sc.cassandraTable[Order]("retail_ks", "orders").persist(MEMORY_AND_DISK)
-    val orderlines = orders.flatMap(order => order.OrderLines_).map(ol => (ol.sku, (ol.productName, ol.thumbnailImage, ol.quantity, ol.unitPrice, ol.totalPrice)))
-    val soldproducts = orderlines.reduceByKey((a, b) => (a._1, a._2, a._3 + b._3, a._4, a._5 + b._5)).
-      map({ case (sku, (productName, thumbnailImage, count, unitPrice, value)) => (sku, productName, thumbnailImage, count, value) })
-    val Top50CountSellingProducts = soldproducts.sortBy({ case (sku, productName, thumbnailImage, count, value) => -value }).
+    val orderLines = orders.flatMap(order => order.OrderLines_).map(ol => (ol.sku, (ol.productName, ol.thumbnailImage, ol.quantity, ol.unitPrice, ol.totalPrice)))
+    val soldProducts = orderLines.reduceByKey((a, b) => (a._1, a._2, a._3 + b._3, a._4, a._5 + b._5)).
+      map({ case (sku, (productName, thumbnailImage, count, unitPrice, value)) => Top50SellingProducts(sku, productName, count, value, thumbnailImage) })
+    val Top50CountSellingProducts = soldProducts.sortBy(-_.saleValue).
       zipWithIndex.
       filter { case (_, idx) => idx < 50 }.
       keys

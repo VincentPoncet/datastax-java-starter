@@ -156,29 +156,29 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4.1</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.datastax.retail.Spark_Retail_Top50_Recommendations</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--      <plugin>
+                      <artifactId>maven-assembly-plugin</artifactId>
+                      <version>2.4.1</version>
+                      <configuration>
+                          <archive>
+                              <manifest>
+                                  <mainClass>com.datastax.retail.Spark_Retail_Top50_Recommendations</mainClass>
+                              </manifest>
+                          </archive>
+                          <descriptorRefs>
+                              <descriptorRef>jar-with-dependencies</descriptorRef>
+                          </descriptorRefs>
+                      </configuration>
+                      <executions>
+                          <execution>
+                              <id>make-assembly</id>
+                              <phase>package</phase>
+                              <goals>
+                                  <goal>single</goal>
+                              </goals>
+                          </execution>
+                      </executions>
+                  </plugin> -->
         </plugins>
     </build>
 
