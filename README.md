@@ -17,11 +17,12 @@ unzip -l datastax-java-starter.zip && rm datastax-java-starter.zip
 cd datastax-java-starter-master
 ```
 
+DSE should be configured with support for Search & Analytics!  (for example, you can start
+it with `bin/dse cassandra -s -k`).
+
 Note : DSE contact points can be added at `src/main/resources/myProperties.txt`, or
-	   specified via system properties, as in examples below.
+	   specified via system property, as in examples below.
 	   Location of source files for `DataGenerator` is added to `src/main/resources/myProperties.txt`
-
-
 
 To create the schema, run the following
 
@@ -38,7 +39,7 @@ To load data with the DataGenerator
 Make sure you have the path in `myProperties.txt` file eg `src/main/resources/product.json`.
 Location of the file can be changed in `src/main/resources/myProperties.txt`
 
-To create the Solr Core 
+To create the Solr Core:
 
 	dsetool create_core retail_ks.product_catalog generateResources=true reindex=true
 	dsetool create_core retail_ks.product_accessories generateResources=true reindex=true
@@ -83,7 +84,7 @@ If you use DSE as default setting, 512MB per executor is too low, so use
 
      dse spark -i src/main/scala/datastaxretailspark.spark-shell --executor-memory 2G
      
-or add this line in dse/resources/spark/conf/spark-defaults.conf
+or add this line in `dse/resources/spark/conf/spark-defaults.conf`
 
      spark.executor.memory 2G
 
