@@ -9,9 +9,17 @@ rm -rf .git
 ```
 Note : We run the remove so that any git files are deleted.
 
+Or without Git:
 
-Note : DSE contactpoints can be added at src/main/resources/myProperties.txt
-	   Location of source files for DataGenerator are added to src/main/resources/myProperties.txt
+```
+curl -o datastax-java-starter.zip https://codeload.github.com/VincentPoncet/datastax-java-starter/zip/master
+unzip -l datastax-java-starter.zip && rm datastax-java-starter.zip
+cd datastax-java-starter-master
+```
+
+Note : DSE contact points can be added at `src/main/resources/myProperties.txt`, or
+	   specified via system properties, as in examples below.
+	   Location of source files for `DataGenerator` is added to `src/main/resources/myProperties.txt`
 
 
 
@@ -23,13 +31,12 @@ To populate the schema with test data, run the following
 
 	mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.SchemaPopulate" -DcontactPoints=localhost
 	
-	
 To load data with the DataGenerator
 	
-	mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.DataGenerator"
+	mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.DataGenerator" -DcontactPoints=localhost
 	
-	Make sure you have the path in myProperties.txt file eg src/main/resources/product.json.
-	Location of the file can be changed in src/main/resources/myProperties.txt
+Make sure you have the path in `myProperties.txt` file eg `src/main/resources/product.json`.
+Location of the file can be changed in `src/main/resources/myProperties.txt`
 
 To create the Solr Core 
 
@@ -48,7 +55,7 @@ To start the web server run
 
 To remove the tables and the schema, run the following.
 
-    mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.SchemaTeardown"
+    mvn clean compile exec:java -Dexec.mainClass="com.datastax.demo.SchemaTeardown" -DcontactPoints=localhost
 
 To see all orders of one customer
 

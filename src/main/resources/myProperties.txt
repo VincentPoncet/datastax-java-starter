@@ -1,4 +1,4 @@
-contactPoints 10.211.55.101,10.211.55.102,10.211.55.103
+contactPoints 127.0.0.1
 schemPopDataPath cql/test_data.cql
 schemSetDDLPath cql/create_schema.cql
 datGenProdDataPath src/main/resources/dataGeneratorData/products.json
