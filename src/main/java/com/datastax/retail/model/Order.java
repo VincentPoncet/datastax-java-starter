@@ -16,7 +16,6 @@ import java.util.List;
 @Table(keyspace = "retail_ks", name = "orders")
 public class Order {
 
-
     @PartitionKey
     @Column(name = "customer_id")
     private java.util.UUID  customerId;
@@ -25,7 +24,7 @@ public class Order {
     @Column(name = "order_id")
     private java.util.UUID orderId;
 
-    @Column(name = "timestamp")
+    @Column(name = "date")
     private LocalDate timestamp;
 
     @Column(name = "order_lines_")
