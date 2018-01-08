@@ -1,13 +1,13 @@
 package com.datastax.retail.model;
 
+import java.time.Instant;
+import java.util.List;
+
+import com.datastax.driver.extras.codecs.jdk8.InstantCodec;
 import com.datastax.driver.mapping.annotations.ClusteringColumn;
 import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
 import com.datastax.driver.mapping.annotations.Table;
-
-import java.time.LocalDate;
-
-import java.util.List;
 
 /**
  * Created by vincentponcet on 22/03/2016.
@@ -24,8 +24,8 @@ public class Order {
     @Column(name = "order_id")
     private java.util.UUID orderId;
 
-    @Column(name = "date")
-    private LocalDate timestamp;
+    @Column(name = "date", codec = InstantCodec.class)
+    private Instant timestamp;
 
     @Column(name = "order_lines_")
     private List<OrderLine> orderLines;
@@ -61,11 +61,11 @@ public class Order {
         this.orderLines = orderLines;
     }
 
-    public LocalDate getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDate timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 
